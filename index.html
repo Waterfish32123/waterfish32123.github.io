@@ -27,16 +27,10 @@ if (typeof(Storage) !== "undefined") {
   // Sorry! No Web Storage support..
   alert("Sorry please change browser");
 }
+var notcal = true
 
 
 
-// Store
-localStorage.setItem("name", "waterfish");
-
-// Retrieve
-var no_of_time = 0 
-no_of_time = localStorage.getItem("name");
-console.log(no_of_time);
 
 
 
@@ -210,6 +204,7 @@ function precise(x) {
   return Number.parseFloat(x).toFixed(2);
 }
 
+//This the loop start
 function onResults(results) {
   canvasCtx.save();
   canvasElement.width = videoWidth;
@@ -253,11 +248,31 @@ function onResults(results) {
 
   //console.log(selected_hands[0][1]);
 
+  // Store
+  //localStorage.setItem("times", timesval);
+
+  // Retrieve
+  
+  var timeval = parseInt(localStorage.getItem("times"));
+  console.log(timeval);
+
+  
+
    if ( angle1 <= selected_hands[0][1] && angle2 <= selected_hands[1][1] && angle3 <= selected_hands[2][1] &&angle1!=0 &&angle2!=0 &&angle3!=0)
    {
 
       canvasCtx.font = "100px Arial";
       canvasCtx.fillText("😁", 10, 220)
+
+      if ( notcal == true )
+      {
+        timeval = timeval + 1;
+        localStorage.setItem("times", timeval);
+        notcal = false
+      }
+  
+
+
    }
 
   canvasCtx.restore();
@@ -288,18 +303,4 @@ const camera = new Camera(videoElement, {
 canvasCtx.font = "30px Arial";
 canvasCtx.fillText("Please allow camera permission, Loading..." , 10, 50);    
 camera.start();
-</script>
-
-<script type="module" src="/path/to/js.cookie.mjs"></script>
-
-
-<script type="module">
-  //import Cookies from '/path/to/js.cookie.mjs'
-
-  //Cookies.set('count', 'time', { expires: Number.MAX_VALUE }, { secure: false })
-
-  //Cookies.get('count') = "times"
-
- //document.write(times)
-
 </script>
