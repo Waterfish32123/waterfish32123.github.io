@@ -9,16 +9,37 @@
 </head>
 
 <body>
+  <div id="result"></div>
   <div class="container">
     <canvas class="output_canvas" width="640" height="480"></canvas>
     <img src="" id="target_img" width="600" />
     <video class="input_video" style="width: 640px; height: 480px"></video>    
   </div>
-  hello
+  
 </body>
 </html>
 
 <script type="module">
+
+if (typeof(Storage) !== "undefined") {
+  // Code for localStorage/sessionStorage.
+} else {
+  // Sorry! No Web Storage support..
+  alert("Sorry please change browser");
+}
+
+
+
+// Store
+localStorage.setItem("name", "waterfish");
+
+// Retrieve
+var no_of_time = 0 
+no_of_time = localStorage.getItem("name");
+console.log(no_of_time);
+
+
+
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
